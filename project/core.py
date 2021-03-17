@@ -91,7 +91,7 @@ class Core:
 
     def start(self):
         # not needed for now.. 
-        #self._client.login()
+        self._client.login()
 
         #
         #   Loading parameters for solar data.
@@ -172,7 +172,7 @@ class Core:
         # start other subprocesses
         self._reading_REST.start()
         self._writing_setpoint.start()
-        self._writing_data.start()
+        #self._writing_data.start()
         self._starttime = datetime.now()
 
 # process for reading data from REST
