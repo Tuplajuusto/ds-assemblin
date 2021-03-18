@@ -127,7 +127,7 @@ class Client:
     def byid_all(self):
         with self._lock:
             _data = list()
-           _data.append("A5021 Room Temperature")
+            _data.append("A5021 Room Temperature")
             _data.append("A5021 Room Setpoint Actual")
             _data.append("A5021 Heating Demand")
             _data.append("A5021 Cooling Demand")
