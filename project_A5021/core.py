@@ -410,7 +410,7 @@ class write_setpoint:
 
                 output = []
                 output.append((ROOM_SETPOINT, setpoint))
-
+# Not changed the heating/cooling tags
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
                     logging.info("Turning heating/cooling external control on.")
