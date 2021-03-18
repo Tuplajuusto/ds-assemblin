@@ -414,16 +414,16 @@ class write_setpoint:
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
                     logging.info("Turning heating/cooling external control on.")
-                    output.append(("Heating Demand", 0))
-                    output.append(("Cooling Demand", 0))
-                    output.append(("Heating/Cooling External Control", 1))
+                    output.append(("A5020 Heating Disabled", 1))
+                    output.append(("A5020 Cooling Disabled", 1))
+                    output.append(("External Control", 1))
                     heating_is_off = True
 
                 if (is_heating_control_allowed() != True):
                     if (heating_is_off == True):
                         logging.info("Turning heating/control external control off - outside allowed time range")
                         heating_is_off = False
-                    output.append(("Heating/Cooling External Control", 0))
+                    output.append(("External Control", 0))
 
                 if (heating_is_off and is_heating_control_allowed() and turn_on_heating( \
                                                     room_temperature, \
@@ -433,7 +433,7 @@ class write_setpoint:
                                                     air_temperature)):
                     logging.info("Turning heating/control external control off - manual call")
                     heating_is_off = False
-                    output.append(("Heating/Cooling External Control", 0))
+                    output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))
                 self._client.writebyid_multiple(output)
