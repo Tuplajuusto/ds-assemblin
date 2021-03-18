@@ -414,8 +414,8 @@ class write_setpoint:
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
                     logging.info("Turning heating/cooling external control on.")
-                    output.append(("Heating Demand", 0))
-                    output.append(("Cooling Demand", 0))
+                    output.append(("B4023 Heating Disabled", 1))
+                    output.append(("B4023 Cooling Disabled", 1))
                     output.append(("External Control", 1))
                     heating_is_off = True
 
