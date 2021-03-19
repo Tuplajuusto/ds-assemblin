@@ -91,7 +91,7 @@ class Core:
 
     def start(self):
         # not needed for now.. 
-        self._client.login()
+        #self._client.login()
 
         #
         #   Loading parameters for solar data.
@@ -203,7 +203,7 @@ class read_REST:
         while True:
             try:
                 process_time = delay_process(process_time, cycle_length)
-
+                self._client.refresh()
                 # Exit here blocks the process from continuing after exit command has been given,
                 # but trends are still being retrieved.
                 if self._exit:
