@@ -38,12 +38,13 @@ class Client:
                                                     timeout=5)
         logging.info("   Response:" + str(r.status_code))
         # cookies are somewhat buggy
-        
+        '''
         print(r.headers["Set-Cookie"])
         print(r.headers["Set-Cookie"].split('=')[1].split(';')[0])
         #self._session.cookies["token"] = r.headers["Set-Cookie"].split('=')[1].split(';')[0]
         print(self._session.cookies)
         print(self._cookie)
+        '''
         
 
     # not used anywhere currently - if login is fixed, then might be worth a look
