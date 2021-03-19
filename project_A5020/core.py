@@ -16,11 +16,11 @@ import os
 import logging
 from algorithms import calculate_setpoint, turn_on_heating
 
-ROOM_SETPOINT = "Room Setpoint"
-ROOM_TEMPERATURE = "Room Temperature"
+ROOM_SETPOINT = "A5020 Room Setpoint Actual"
+ROOM_TEMPERATURE = "A5020 Room Temperature"
 SOLAR_POWER = "Solar Power External"
 OUTSIDE_TEMPERATURE = "Outside Temperature External"
-AIR_TEMPERATURE = "Supply Air Temp"
+AIR_TEMPERATURE = "A5020 Room Temperature"
 
 # Core class used to start and control subprocesses:
 #   - reading data from FMI
@@ -203,7 +203,7 @@ class read_REST:
         while True:
             try:
                 process_time = delay_process(process_time, cycle_length)
-                self._client.refresh()
+                #self._client.refresh()
                 # Exit here blocks the process from continuing after exit command has been given,
                 # but trends are still being retrieved.
                 if self._exit:
