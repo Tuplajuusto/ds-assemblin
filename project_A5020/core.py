@@ -16,7 +16,7 @@ import os
 import logging
 from algorithms import calculate_setpoint, turn_on_heating
 
-ROOM_SETPOINT = "A5020 Room Setpoint Actual"
+ROOM_SETPOINT = "A5020 Room Setpoint Remote"
 ROOM_TEMPERATURE = "A5020 Room Temperature"
 SOLAR_POWER = "Solar Power External"
 OUTSIDE_TEMPERATURE = "Outside Temperature External"
