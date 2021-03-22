@@ -423,6 +423,8 @@ class write_setpoint:
                     if (heating_is_off == True):
                         logging.info("Turning heating/control external control off - outside allowed time range")
                         heating_is_off = False
+                    output.append(("A5020 Heating Disabled", 0))
+                    output.append(("A5020 Cooling Disabled", 0))
                     output.append(("External Control", 0))
 
                 if (heating_is_off and is_heating_control_allowed() and turn_on_heating( \
@@ -433,6 +435,8 @@ class write_setpoint:
                                                     air_temperature)):
                     logging.info("Turning heating/control external control off - manual call")
                     heating_is_off = False
+                    output.append(("A5020 Heating Disabled", 0))
+                    output.append(("A5020 Cooling Disabled", 0))
                     output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))
