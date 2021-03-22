@@ -418,12 +418,7 @@ class write_setpoint:
                     output.append(("A5020 Cooling Disabled", 1))
                     output.append(("External Control", 1))
                     heating_is_off = True
-
-                if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
-                                                    and is_heating_control_allowed()):
-                    output.append(("External Control",1))
-                    threading.Timer(120,None)
-
+                
                 if (is_heating_control_allowed() != True):
                     if (heating_is_off == True):
                         logging.info("Turning heating/control external control off - outside allowed time range")
