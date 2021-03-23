@@ -16,8 +16,8 @@ import os
 import logging
 from algorithms import calculate_setpoint, turn_on_heating
 
-ROOM_SETPOINT = "Room Setpoint"
-ROOM_TEMPERATURE = "Room Temperature"
+ROOM_SETPOINT = "B4023 Room Setpoint Remote"
+ROOM_TEMPERATURE = "B4023 Room Temperature"
 SOLAR_POWER = "Solar Power External"
 OUTSIDE_TEMPERATURE = "Outside Temperature External"
 AIR_TEMPERATURE = "Supply Air Temp"
@@ -410,6 +410,7 @@ class write_setpoint:
 
                 output = []
                 output.append((ROOM_SETPOINT, setpoint))
+                output.append(("External Control",1))
 
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
@@ -423,6 +424,8 @@ class write_setpoint:
                     if (heating_is_off == True):
                         logging.info("Turning heating/control external control off - outside allowed time range")
                         heating_is_off = False
+                    output.append(("B4023 Heating Disabled", 0))
+                    output.append(("B4023 Cooling Disabled", 0))
                     output.append(("External Control", 0))
 
                 if (heating_is_off and is_heating_control_allowed() and turn_on_heating( \
@@ -433,6 +436,8 @@ class write_setpoint:
                                                     air_temperature)):
                     logging.info("Turning heating/control external control off - manual call")
                     heating_is_off = False
+                    output.append(("B4023 Heating Disabled", 0))
+                    output.append(("B4023 Cooling Disabled", 0))
                     output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))
