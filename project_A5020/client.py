@@ -24,7 +24,7 @@ class Client:
         self._session = requests.Session()
         self._session.verify = config.getboolean(CONFIG.REST_CATEGORY, CONFIG.REST_SSL_VERIFY, \
                                                     fallback=CONFIG.REST_SSL_VERIFY_FALLBACK)
-        self._cookie = None
+        self._cookie = True
         self._lock = threading.Lock()
 
     def __create_url(self, path):
