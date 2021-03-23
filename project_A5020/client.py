@@ -137,6 +137,7 @@ class Client:
             _data.append("A5020 Room Setpoint Remote")
             _data.append("A5020 Heating Power")
             _data.append("A5020 Cooling Power")
+            _data.append("External Control")
     #        _data.append("Outside Temperature External")
     #        _data.append("Current Solar Power")
     #        _data.append("Solar Power External")
