@@ -34,7 +34,7 @@ class Client:
     # login is currently not really doing anything, might need adjustments if it gets fixed on the REST side.
     def login(self):
         logging.info("Login to Assemblin REST")
-        r = self._session.post('https://192.168.20.2:8080("/assemblin/users/login")', auth=(self._username, self._password), \
+        r = self._session.post('https://192.168.20.2:8080/assemblin/users/login', auth=(self._username, self._password), \
                                                     timeout=5)
         logging.info("   Response:" + str(r.status_code))
         # cookies are somewhat buggy
