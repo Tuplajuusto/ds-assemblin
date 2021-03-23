@@ -24,7 +24,7 @@ class Client:
         self._session = requests.Session()
         self._session.verify = config.getboolean(CONFIG.REST_CATEGORY, CONFIG.REST_SSL_VERIFY, \
                                                     fallback=CONFIG.REST_SSL_VERIFY_FALLBACK)
-        self._cookie = None
+        self._cookie = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IiIsImFkbWluIjpmYWxzZSwiZXhwIjoxNjE2MTQ5NzEzfQ.DFhV40ZRCu_a_fRAUZYKiZPxuFxaaTqzwBMhDl_CU7o'
         self._lock = threading.Lock()
 
     def __create_url(self, path):
@@ -41,7 +41,7 @@ class Client:
         
         print(r.headers["Set-Cookie"])
         print(r.headers["Set-Cookie"].split('=')[1].split(';')[0])
-        #self._session.cookies["token"] = r.headers["Set-Cookie"].split('=')[1].split(';')[0]
+        self._session.cookies["token"] = r.headers["Set-Cookie"].split('=')[1].split(';')[0]
         print(self._session.cookies)
         print(self._cookie)
         
