@@ -89,7 +89,7 @@ def normal_setpoint():
     if (now.hour >= 8 and now.hour < 21):
         return 21.0
     else:
-        return 17.0
+        return 21
 
 
 # Zoltan's model - temp_calc.py file
