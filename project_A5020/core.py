@@ -417,8 +417,8 @@ class write_setpoint:
                     logging.info("Turning heating/cooling external control on.")
                     output.append(("A5020 Heating Disabled", 1))
                     output.append(("A5020 Cooling Disabled", 1))
-                    output.append(("A5020 Cooling Demand",0))
-                    output.append(("A5020 Heating Demand",0))
+                    output.append(("A5020 Cooling Demand",0.0))
+                    output.append(("A5020 Heating Demand",0.0))
                     output.append(("External Control", 1))
                     heating_is_off = True
                 
