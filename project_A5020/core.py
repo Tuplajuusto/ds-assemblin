@@ -437,7 +437,7 @@ class write_setpoint:
                     logging.info("Turning heating/control external control off - manual call")
                     heating_is_off = False
                     output.append(("A5020 Heating Disabled", 0))
-                    output.append(("A5020 Cooling Disabled", 0))
+                    output.append(("A5020 Cooling Disabled", 1))
                     output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))
