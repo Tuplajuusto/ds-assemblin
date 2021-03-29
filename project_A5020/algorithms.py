@@ -18,7 +18,7 @@ SP_pred = None
 # return setpoint (float)
 def calculate_setpoint(room_temperature: float, solar_data: list, temperature_data: list, \
                                                     time_horizon: int, air_temp: float):
-    """
+    
     room_temp = float(room_temperature)
     old_setpoint = normal_setpoint()
     current_temp = get_temperature_at(temperature_data, 0)
@@ -27,10 +27,10 @@ def calculate_setpoint(room_temperature: float, solar_data: list, temperature_da
     temp_4hour = get_temperature_at(temperature_data, 4)
 
     return round(model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
-    """
+    
     #return model_zoltan(solar_data, temperature_data, air_temp)
     #return corrected_setpoint(datetime.now().hour, datetime.now().minute)
-    return normal_setpoint()
+    #return normal_setpoint()
 
 
 
@@ -89,7 +89,7 @@ def normal_setpoint():
     if (now.hour >= 8 and now.hour < 21):
         return 21.0
     else:
-        return 21.0
+        return 18
 
 
 # Zoltan's model - temp_calc.py file
