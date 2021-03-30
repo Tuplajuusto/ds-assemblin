@@ -106,7 +106,7 @@ def model_zoltan(solar_data: list, temperature_data: list, air_temp: float):
 # Mai's linear regression model
 def model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour):
     now = datetime.now()
-    if (now.hour >= 21 and now.hour <= 3):
+    if (now.hour >= 21 and now.hour > 3):
         return 18.0
     elif (now.hour >= 7 and now.hour < 21):
         return 21.0
