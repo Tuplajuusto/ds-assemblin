@@ -411,7 +411,7 @@ class write_setpoint:
                 output = []
                 output.append((ROOM_SETPOINT, setpoint))
 
-                if ((is_heating_control_allowed() == True)):
+                #if ((is_heating_control_allowed() == True)):
                     output.append(("External Control", 1))
                     time.sleep(840)
  
