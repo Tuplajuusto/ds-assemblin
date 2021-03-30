@@ -20,7 +20,7 @@ ROOM_SETPOINT = "B4023 Room Setpoint Remote"
 ROOM_TEMPERATURE = "B4023 Room Temperature"
 SOLAR_POWER = "Solar Power External"
 OUTSIDE_TEMPERATURE = "Outside Temperature External"
-AIR_TEMPERATURE = "Supply Air Temp"
+AIR_TEMPERATURE = "B4023 Room Temperature"
 
 # Core class used to start and control subprocesses:
 #   - reading data from FMI
