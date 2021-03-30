@@ -410,7 +410,10 @@ class write_setpoint:
 
                 output = []
                 output.append((ROOM_SETPOINT, setpoint))
-                output.append(("External Control",1))
+
+                if ((is_heating_control_allowed() == True)):
+                    output.append(("External Control", 1))
+                    time.sleep(840)
 
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
@@ -437,7 +440,7 @@ class write_setpoint:
                     logging.info("Turning heating/control external control off - manual call")
                     heating_is_off = False
                     output.append(("B4023 Heating Disabled", 0))
-                    output.append(("B4023 Cooling Disabled", 0))
+                    output.append(("B4023 Cooling Disabled", 1))
                     output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))

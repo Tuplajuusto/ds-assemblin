@@ -18,7 +18,7 @@ SP_pred = None
 # return setpoint (float)
 def calculate_setpoint(room_temperature: float, solar_data: list, temperature_data: list, \
                                                     time_horizon: int, air_temp: float):
-    """
+    
     room_temp = float(room_temperature)
     old_setpoint = normal_setpoint()
     current_temp = get_temperature_at(temperature_data, 0)
@@ -27,10 +27,10 @@ def calculate_setpoint(room_temperature: float, solar_data: list, temperature_da
     temp_4hour = get_temperature_at(temperature_data, 4)
 
     return round(model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
-    """
+    
     #return model_zoltan(solar_data, temperature_data, air_temp)
     #return corrected_setpoint(datetime.now().hour, datetime.now().minute)
-    return normal_setpoint()
+    #return normal_setpoint()
 
 
 
@@ -105,8 +105,14 @@ def model_zoltan(solar_data: list, temperature_data: list, air_temp: float):
 
 # Mai's linear regression model
 def model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour):
-    weight = [0.15928377818054307,  0.882512434780585, -0.13328905314886427, 0.1868212583669926, -0.046647105257075515, -0.007336737648879483, -0.9465895872651089]
-    return weight[0] * room_temp + weight[1] * old_setpoint + weight[2] * current_temp + weight[3] * temp_1hour + weight[4] * temp_2hour + weight[5] * temp_4hour + weight[6] 
+    now = datetime.now()
+    if (now.hour >=21 and now.hour < 3):
+        return 18.0
+    elif (now.hour >= 7 and now.hour < 21 ):
+        return 21.0
+    else:
+        weight = [0.15928377818054307,  0.882512434780585, -0.13328905314886427, 0.1868212583669926, -0.046647105257075515, -0.007336737648879483, -0.9465895872651089]
+        return weight[0] * room_temp + weight[1] * old_setpoint + weight[2] * current_temp + weight[3] * temp_1hour + weight[4] * temp_2hour + weight[5] * temp_4hour + weight[6] 
 
 
 # Base for Mai's model
