@@ -412,10 +412,6 @@ class write_setpoint:
                 output.append((ROOM_SETPOINT, setpoint))
                 output.append(("External Control", 1))
 
-                #if ((is_heating_control_allowed() == True)):
-                    #output.append(("External Control", 1))
-                    #time.sleep(840)
-
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
                     logging.info("Turning heating/cooling external control on.")
@@ -423,6 +419,10 @@ class write_setpoint:
                     output.append(("B4023 Cooling Disabled", 1))
                     output.append(("External Control", 1))
                     heating_is_off = True
+
+                #if ((is_heating_control_allowed() == True)):
+                    #output.append(("External Control", 1))
+                    #time.sleep(840)
 
                 if (is_heating_control_allowed() != True):
                     if (heating_is_off == True):
