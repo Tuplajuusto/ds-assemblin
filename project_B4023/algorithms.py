@@ -106,13 +106,13 @@ def model_zoltan(solar_data: list, temperature_data: list, air_temp: float):
 # Mai's linear regression model
 def model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour):
     now = datetime.now()
-    if (now.hour >= 21 and now.hour > 3):
-        return 18.0
-    elif (now.hour >= 7 and now.hour < 21):
-        return 21.0
-    else:
+    if (now.hour >= 3 and now.hour < 7):
         weight = [0.15928377818054307,  0.882512434780585, -0.13328905314886427, 0.1868212583669926, -0.046647105257075515, -0.007336737648879483, -0.9465895872651089]
         return weight[0] * room_temp + weight[1] * old_setpoint + weight[2] * current_temp + weight[3] * temp_1hour + weight[4] * temp_2hour + weight[5] * temp_4hour + weight[6] 
+    elif (now.hour >= 7 and now.hour < 21):
+        return 22.0
+    else:
+        return 18.0
 
 
 # Base for Mai's model
