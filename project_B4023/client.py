@@ -136,7 +136,7 @@ class Client:
             _data.append("B4023 Room Setpoint Remote")
             _data.append("B4023 Heating Power")
             _data.append("B4023 Cooling Power")
-            _data.append("External Control")
+    #        _data.append("External Control")
     #        _data.append("Outside Temperature External")
     #        _data.append("Current Solar Power")
     #        _data.append("Solar Power External")
