@@ -417,7 +417,7 @@ class write_setpoint:
                     logging.info("Turning heating/cooling external control on.")
                     output.append(("B4023 Heating Disabled", 1))
                     output.append(("B4023 Cooling Disabled", 1))
-                    output.append(("External Control", 1))
+                    #output.append(("External Control", 1))
                     heating_is_off = True
 
                 #if ((is_heating_control_allowed() == True)):
@@ -430,7 +430,7 @@ class write_setpoint:
                         heating_is_off = False
                     output.append(("B4023 Heating Disabled", 0))
                     output.append(("B4023 Cooling Disabled", 0))
-                    output.append(("External Control", 0))
+                    #output.append(("External Control", 0))
 
                 if (heating_is_off and is_heating_control_allowed() and turn_on_heating( \
                                                     room_temperature, \
@@ -442,7 +442,7 @@ class write_setpoint:
                     heating_is_off = False
                     output.append(("B4023 Heating Disabled", 0))
                     output.append(("B4023 Cooling Disabled", 1))
-                    output.append(("External Control", 0))
+                    #output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))
                 self._client.writebyid_multiple(output)
