@@ -6,6 +6,9 @@
 from datetime import datetime, timedelta
 from config import config
 import config as CONFIG
+import numpy as np
+import joblib
+import os
 # for model zoltan
 SP_pred = None
 
@@ -25,8 +28,13 @@ def calculate_setpoint(room_temperature: float, solar_data: list, temperature_da
     temp_1hour = get_temperature_at(temperature_data, 1)
     temp_2hour = get_temperature_at(temperature_data, 2)
     temp_4hour = get_temperature_at(temperature_data, 4)
+    #hour = datetime.now().hour
+    #minute = datetime.now().minute
 
-    return round(model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
+
+    #return round(model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
+    #return round(ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute),5)
+    return round(ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour),5)
     
     #return model_zoltan(solar_data, temperature_data, air_temp)
     #return corrected_setpoint(datetime.now().hour, datetime.now().minute)
@@ -147,4 +155,36 @@ def corrected_setpoint(hour, minute):
     
     return setpoint
 
+
+def ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute):
+    now = datetime.now()
+    filename = joblib.load('/home/pi/Desktop/ds-assemblin/project/test_model1.sav','r')
+    weight = filename.coef_
+    inter = filename.intercept_
+    pred = inter + weight[0] * room_temp + old_setpoint * weight[1] + current_temp * weight[2] \
+            + temp_1hour * weight[3] + temp_2hour * weight[4] + temp_4hour * weight[5] + hour * weight[6] + minute * weight[7]
+    mse = np.square(np.subtract(room_temp,pred)).mean()
+    print (mse)
+    if (now.hour >= 3 and now.hour < 7):
+        return (pred - mse)
+    elif (now.hour >= 7 and now.hour < 21):
+        return 21.0
+    else:   
+        return 18.0
+
+def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour):
+    now = datetime.now()
+    filename = joblib.load('/home/pi/Desktop/ds-assemblin/project/test_model1.sav','r')
+    weight = filename.coef_
+    inter = filename.intercept_
+    pred = inter + weight[0] *  old_setpoint + weight[1] * current_temp + weight[2] \
+            * temp_1hour + weight[3] * temp_2hour + weight[4] * temp_4hour
+    mse = np.square(np.subtract(room_temp,pred)).mean()
+    print (mse)
+    if (now.hour >= 3 and now.hour < 7):
+        return (pred - mse)
+    elif (now.hour >= 7 and now.hour < 21):
+        return 21.0
+    else:   
+        return 18.0
 
