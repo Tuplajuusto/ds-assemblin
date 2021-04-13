@@ -7,6 +7,7 @@ from datetime import datetime, timedelta
 from config import config
 import config as CONFIG
 import numpy as np
+import sklearn
 import joblib
 import os
 # for model zoltan

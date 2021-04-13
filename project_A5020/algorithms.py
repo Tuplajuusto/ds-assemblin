@@ -8,6 +8,7 @@ from config import config
 import config as CONFIG
 import numpy as np
 import joblib
+import sklearn
 import os
 # for model zoltan
 SP_pred = None
