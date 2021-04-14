@@ -186,6 +186,7 @@ def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp
     print(mse)
     print(filename.coef_)
     print(filename.intercept_)
+    print(pred)
     if (now.hour >= 3 and now.hour < 7):
         return (pred - mse)
     elif (now.hour >= 7 and now.hour < 21):
