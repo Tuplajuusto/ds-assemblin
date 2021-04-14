@@ -165,7 +165,7 @@ def ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_
     pred = inter + weight[0] * room_temp + old_setpoint * weight[1] + current_temp * weight[2] \
             + temp_1hour * weight[3] + temp_2hour * weight[4] + temp_4hour * weight[5] + hour * weight[6] + minute * weight[7]
     #mse = np.square(np.subtract(room_temp,pred)).mean()
-    print(mse)
+    #print(mse)
     print(filename.coef_)
     print(filename.intercept_)
     print(pred)
@@ -184,10 +184,6 @@ def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp
     pred = inter + weight[0] *  old_setpoint + weight[1] * current_temp + weight[2] \
             * temp_1hour + weight[3] * temp_2hour + weight[4] * temp_4hour
     mse = np.square(np.subtract(room_temp,pred)).mean()
-    print (mse)
-    print(mse)
-    print(filename.coef_)
-    print(filename.intercept_)
     if (now.hour >= 3 and now.hour < 7):
         return (pred - mse)
     elif (now.hour >= 7 and now.hour < 21):
