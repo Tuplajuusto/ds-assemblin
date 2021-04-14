@@ -156,7 +156,7 @@ def corrected_setpoint(hour, minute):
     
     return setpoint
 
-
+#Model based on Mai's model
 def ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute):
     now = datetime.now()
     filename = joblib.load('/home/pi/Documents/ds-assemblin/project_A5020/test_model1.sav','r')
@@ -174,6 +174,7 @@ def ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_
     else:   
         return 18.0
 
+#Model is combination of Mai's model and AnttiL model
 def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour):
     now = datetime.now()
     filename = joblib.load('/home/pi/Documents/ds-assemblin/project_A5020/test_model.sav','r')
