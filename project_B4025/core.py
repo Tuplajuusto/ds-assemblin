@@ -91,7 +91,7 @@ class Core:
 
     def start(self):
         # not needed for now.. 
-        self._client.login()
+        #self._client.login()
 
         #
         #   Loading parameters for solar data.
