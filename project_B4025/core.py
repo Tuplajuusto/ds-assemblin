@@ -16,11 +16,11 @@ import os
 import logging
 from algorithms import calculate_setpoint, turn_on_heating
 
-ROOM_SETPOINT = "Room Setpoint"
-ROOM_TEMPERATURE = "Room Temperature"
+ROOM_SETPOINT = "B4025 Room Setpoint Actual"
+ROOM_TEMPERATURE = "B4025 Room Temperature"
 SOLAR_POWER = "Solar Power External"
 OUTSIDE_TEMPERATURE = "Outside Temperature External"
-AIR_TEMPERATURE = "Supply Air Temp"
+AIR_TEMPERATURE = "B4025 Room Temperature"
 
 # Core class used to start and control subprocesses:
 #   - reading data from FMI
