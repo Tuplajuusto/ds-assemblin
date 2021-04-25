@@ -185,13 +185,7 @@ def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp
     inter = filename.intercept_
     pred = inter + weight[0] *  old_setpoint + weight[1] * current_temp + weight[2] \
             * temp_1hour + weight[3] * temp_2hour + weight[4] * temp_4hour
-    
-    Ypredict = filename.predict(X_test)
-    a= Ypredict.reshape(-1,1)
-    accuracy_score= pickle_model.score(a, Y_test)
-    print(accuracy_score)
-    mean_squared_error(a,Y_test)
-    #mse = np.sum((room_temp - pred)**2) / 1000.0
+    mse = np.square(np.subtract(pred,room_temp)).mean()
     print(room_temp)
     print(pred)
     print(mse)
