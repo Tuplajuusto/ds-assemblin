@@ -184,7 +184,7 @@ def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp
     inter = filename.intercept_
     pred = inter + weight[0] *  old_setpoint + weight[1] * current_temp + weight[2] \
             * temp_1hour + weight[3] * temp_2hour + weight[4] * temp_4hour
-    mse = np.sum((perd - room_temp)**2) / 1000.0
+    mse = np.sum((pred - room_temp)**2) / 1000.0
     print(room_temp)
     print(pred)
     print(mse)
