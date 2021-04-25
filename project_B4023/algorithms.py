@@ -8,7 +8,6 @@ from config import config
 import config as CONFIG
 import numpy as np
 import sklearn
-from sklearn.metrics import mean_squared_error
 import joblib
 import os
 # for model zoltan
@@ -30,14 +29,14 @@ def calculate_setpoint(room_temperature: float, solar_data: list, temperature_da
     temp_1hour = get_temperature_at(temperature_data, 1)
     temp_2hour = get_temperature_at(temperature_data, 2)
     temp_4hour = get_temperature_at(temperature_data, 4)
-    #hour = datetime.now().hour
-    #minute = datetime.now().minute
+    hour = datetime.now().hour
+    minute = datetime.now().minute
 
     
     
     #return round(model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
-    #return round(ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute), 5)
-    return round(ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
+    return round(ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute), 5)
+    #return round(ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
 
     #return model_zoltan(solar_data, temperature_data, air_temp)
     #return corrected_setpoint(datetime.now().hour, datetime.now().minute)
@@ -185,13 +184,8 @@ def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp
     inter = filename.intercept_
     pred = inter + weight[0] *  old_setpoint + weight[1] * current_temp + weight[2] \
             * temp_1hour + weight[3] * temp_2hour + weight[4] * temp_4hour
-    mse = sklearn.metrics.mean_squared_error(room_temp,pred)
-    print(room_temp)
+    #mse = sklearn.metrics.mean_squared_error(room_temp,pred)
     print(pred)
-    print(mse)
-    print(weight)
-    print(inter)
-    print(pred-mse)
     if (now.hour >= 3 and now.hour < 7):
         return (pred)
     elif (now.hour >= 7 and now.hour < 21):
