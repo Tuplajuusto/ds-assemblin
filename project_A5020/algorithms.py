@@ -29,13 +29,13 @@ def calculate_setpoint(room_temperature: float, solar_data: list, temperature_da
     temp_1hour = get_temperature_at(temperature_data, 1)
     temp_2hour = get_temperature_at(temperature_data, 2)
     temp_4hour = get_temperature_at(temperature_data, 4)
-    hour = datetime.now().hour
-    minute = datetime.now().minute
+    #hour = datetime.now().hour
+    #minute = datetime.now().minute
 
 
     #return round(model3(room_temp, old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour), 5)
-    return round(ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute),5)
-    #return round(ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour),5)
+    #return round(ML_model(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour, hour, minute),5)
+    return round(ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp_4hour),5)
     
     #return model_zoltan(solar_data, temperature_data, air_temp)
     #return corrected_setpoint(datetime.now().hour, datetime.now().minute)
