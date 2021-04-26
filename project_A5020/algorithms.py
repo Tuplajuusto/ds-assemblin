@@ -185,7 +185,7 @@ def ML_model2(room_temp,old_setpoint, current_temp, temp_1hour, temp_2hour, temp
     #mse = np.square(np.subtract(room_temp,pred)).mean()
     print(pred)
     if (now.hour >= 3 and now.hour < 7):
-        return (pred - mse)
+        return (pred)
     elif (now.hour >= 7 and now.hour < 21):
         return 21.0
     else:   
