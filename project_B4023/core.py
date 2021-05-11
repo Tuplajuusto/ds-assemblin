@@ -16,11 +16,11 @@ import os
 import logging
 from algorithms import calculate_setpoint, turn_on_heating
 
-ROOM_SETPOINT = "Room Setpoint"
-ROOM_TEMPERATURE = "Room Temperature"
+ROOM_SETPOINT = "B4023 Room Setpoint Remote"
+ROOM_TEMPERATURE = "B4023 Room Temperature"
 SOLAR_POWER = "Solar Power External"
 OUTSIDE_TEMPERATURE = "Outside Temperature External"
-AIR_TEMPERATURE = "Supply Air Temp"
+AIR_TEMPERATURE = "B4023 Room Temperature"
 
 # Core class used to start and control subprocesses:
 #   - reading data from FMI
@@ -91,7 +91,7 @@ class Core:
 
     def start(self):
         # not needed for now.. 
-        self._client.login()
+        #self._client.login()
 
         #
         #   Loading parameters for solar data.
@@ -410,20 +410,27 @@ class write_setpoint:
 
                 output = []
                 output.append((ROOM_SETPOINT, setpoint))
+                #output.append(("External Control", 1))
 
                 if (datetime.now().hour == heating_off_at_hour and heating_is_off != True \
                                                     and is_heating_control_allowed()):
                     logging.info("Turning heating/cooling external control on.")
-                    output.append(("A5020 Heating Disabled", 1))
-                    output.append(("A5020 Cooling Disabled", 1))
-                    output.append(("External Control", 1))
+                    output.append(("B4023 Heating Disabled", 1))
+                    output.append(("B4023 Cooling Disabled", 1))
+                    #output.append(("External Control", 1))
                     heating_is_off = True
+
+                #if ((is_heating_control_allowed() == True)):
+                    #output.append(("External Control", 1))
+                    #time.sleep(840)
 
                 if (is_heating_control_allowed() != True):
                     if (heating_is_off == True):
                         logging.info("Turning heating/control external control off - outside allowed time range")
                         heating_is_off = False
-                    output.append(("External Control", 0))
+                    output.append(("B4023 Heating Disabled", 0))
+                    output.append(("B4023 Cooling Disabled", 0))
+                    #output.append(("External Control", 0))
 
                 if (heating_is_off and is_heating_control_allowed() and turn_on_heating( \
                                                     room_temperature, \
@@ -433,7 +440,9 @@ class write_setpoint:
                                                     air_temperature)):
                     logging.info("Turning heating/control external control off - manual call")
                     heating_is_off = False
-                    output.append(("External Control", 0))
+                    output.append(("B4023 Heating Disabled", 0))
+                    output.append(("B4023 Cooling Disabled", 1))
+                    #output.append(("External Control", 0))
 
                 logging.info("Writing new setpoint to system: " + str(setpoint))
                 self._client.writebyid_multiple(output)
